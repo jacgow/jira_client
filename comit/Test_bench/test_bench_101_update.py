@@ -3,97 +3,21 @@ from requests.auth import HTTPBasicAuth
 import json
 
 
-url = 'https://doubledare.atlassian.net/rest/api/3/issue/ITB-13'
-auth = HTTPBasicAuth("boryspiasny@gmail.com", "ATATT3xFfGF0hyibnD_Kj1g0wRUdrQrJq0uKTkNVgrATNYaC5y-4CN_p0T7XmGjLcj9OHFXBxd7Xv3ipo56eu8C9q9qi7ceEiLOoTOgwDTeyyYt78UypNVydEzU1Z4zD3udI0JGSoDk1JC-CrJB9MmBIy3cP1FWyFm1SJAGpeBxcX-RP-gKKxjQ=72A1CF0C")
+url = 'https://doubledare.atlassian.net/rest/api/3/issue/10040'
+auth = HTTPBasicAuth("boryspiasny@gmail.com", "ATATT3xFfGF06eL1LMgKY418-gTh0hNhL4VJeiUridZjJoAsPMlT8lWtLXY4Ydg5cm5EzloQXmM0QyxrBJTvfJXSI4ObDrcqZqDLOp5tohT3lInGVt90NXmdYJY1SniC3aIk8XbPWVVsCKqAOKvYj6BxW9sY0Lq3xifW4Zv0b41xCFTxiKu2vb0=E2C0E342")
 
 headers = {
   "Accept": "application/json",
   "Content-Type": "application/json"
 }
 
-payload = json.dumps( {
+payload = json.dumps( 
+ {
   "fields": {
-    "customfield_10001": {
-      "content": [
-        {
-          "content": [
-            {
-              "text": "Investigation underway",
-              "type": "text"
-            }
-          ],
-          "type": "paragraph"
-        }
-      ],
-      "type": "doc",
-      "version": 1
-    },
-    "customfield_10001": 1,
-    "summary": "Completed orders still displaying in pending"
-  },
-  "historyMetadata": {
-    "activityDescription": "Complete order processing",
-    "actor": {
-      "avatarUrl": "http://mysystem/avatar/tony.jpg",
-      "displayName": "Tony",
-      "id": "tony",
-      "type": "mysystem-user",
-      "url": "http://mysystem/users/tony"
-    },
-    "cause": {
-      "id": "myevent",
-      "type": "mysystem-event"
-    },
-    "description": "From the order testing process",
-    "extraData": {
-      "Iteration": "10a",
-      "Step": "4"
-    },
-    "generator": {
-      "id": "mysystem-1",
-      "type": "mysystem-application"
-    },
-    "type": "myplugin:type"
-  },
-  "properties": [
-    {
-      "key": "key1",
-      "value": "Order number 10784"
-    },
-    {
-      "key": "key2",
-      "value": "Order number 10923"
-    }
-  ],
-  "update": {
-    "components": [
-      {
-        "set": ""
-      }
-    ],
-    "labels": [
-      {
-        "add": "triaged"
-      },
-      {
-        "remove": "blocker"
-      }
-    ],
-    "summary": [
-      {
-        "set": "Bug in business logic"
-      }
-    ],
-    "timetracking": [
-      {
-        "edit": {
-          "originalEstimate": "1w 1d",
-          "remainingEstimate": "4d"
-        }
-      }
-    ]
+    "summary": "changed description from api v2"
   }
-} )
+}
+)
 
 response = requests.request(
    "PUT",
@@ -102,5 +26,8 @@ response = requests.request(
    headers=headers,
    auth=auth
 )
+print(response.text)
 
-print(json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": ")))
+#sukces, działa! Brak printu
+
+

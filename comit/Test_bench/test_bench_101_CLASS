@@ -1,3 +1,8 @@
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+
+
 class JiraIssueApi:
    def __init__(self, auth):
       self.auth = auth
@@ -5,8 +10,24 @@ class JiraIssueApi:
    def create_jira_issue(self, url):
       pass
 
-   def read_jira_issue(self, url):
-      pass
+   def get_jira_issue(self, url):
+     
+      headers = {
+         "Accept": "application/json"
+      }
+
+      response = requests.request(
+         "GET",
+         url,
+         headers=headers,
+         auth=self.auth
+      )
+
+      if response.status_code == 200:
+         result = json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": "))
+         return result
+      else:
+         raise Exception()
 
    def update_jira_issue(self, url):
       pass
@@ -14,25 +35,14 @@ class JiraIssueApi:
    def delete_jira_issue(self, url):
       pass
 
-jira_issue_api_object = JiraIssueApi(auth = auth)
-jira_issue_api_object.get_list_jira_issues(url = url) #endpoint
+if __name__ == "__main__":
+   auth = HTTPBasicAuth("boryspiasny@gmail.com", "ATATT3xFfGF06eL1LMgKY418-gTh0hNhL4VJeiUridZjJoAsPMlT8lWtLXY4Ydg5cm5EzloQXmM0QyxrBJTvfJXSI4ObDrcqZqDLOp5tohT3lInGVt90NXmdYJY1SniC3aIk8XbPWVVsCKqAOKvYj6BxW9sY0Lq3xifW4Zv0b41xCFTxiKu2vb0=E2C0E342")
+   url = 'https://doubledare.atlassian.net/rest/api/2/issue/10040' #zapytanie o issue numer 10040
+   jira_issue_api_object = JiraIssueApi(auth = auth)
+   result = print (jira_issue_api_object.get_jira_issue(url = url)) #endpoint
 
 
 
 
-
-
-
-  def get_list_jira_issues(self, url):
-      url = "https://doubledare.atlassian.net/rest/api/3/issue/createmeta"
-      auth = auth
-      headers = { "Accept": "application/json" }
-
-      response = requests.request(
-      "GET",
-      url,
-      headers=headers,
-      auth=auth
-      )
-
-      print(json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": ")))
+"""   def get_list_jira_issues(self, url):
+     pass """
