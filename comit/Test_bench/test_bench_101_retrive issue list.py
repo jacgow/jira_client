@@ -3,7 +3,7 @@ from requests.auth import HTTPBasicAuth
 import json
 
 project_name = "ITB"
-url = "https://doubledare.atlassian.net/rest/api/3/issue/createmeta"
+url = "https://doubledare.atlassian.net/rest/api/3/issue/createmeta/ITB/"
 auth = HTTPBasicAuth("boryspiasny@gmail.com", "ATATT3xFfGF0hyibnD_Kj1g0wRUdrQrJq0uKTkNVgrATNYaC5y-4CN_p0T7XmGjLcj9OHFXBxd7Xv3ipo56eu8C9q9qi7ceEiLOoTOgwDTeyyYt78UypNVydEzU1Z4zD3udI0JGSoDk1JC-CrJB9MmBIy3cP1FWyFm1SJAGpeBxcX-RP-gKKxjQ=72A1CF0C")
 headers = {
   "Accept": "application/json"
