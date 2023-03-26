@@ -1,13 +1,17 @@
 import requests
 from requests.auth import HTTPBasicAuth
 import json
-from .jira_issue_api import JiraIssueApi
+from jira_issue_api import JiraIssueApi
 
 
 if __name__ == "__main__":
-   auth = HTTPBasicAuth("boryspiasny@gmail.com", "ATATT3xFfGF06eL1LMgKY418-gTh0hNhL4VJeiUridZjJoAsPMlT8lWtLXY4Ydg5cm5EzloQXmM0QyxrBJTvfJXSI4ObDrcqZqDLOp5tohT3lInGVt90NXmdYJY1SniC3aIk8XbPWVVsCKqAOKvYj6BxW9sY0Lq3xifW4Zv0b41xCFTxiKu2vb0=E2C0E342")
-   url = 'https://doubledare.atlassian.net/rest/api/2/issue/10040' #zapytanie o issue numer 10040
-   jira_issue_api_object = JiraIssueApi(auth = auth)
-   result = print (jira_issue_api_object.get_jira_issue(url = url)) #endpoint
+   http_basic_auth = HTTPBasicAuth("boryspiasny@gmail.com", "ATATT3xFfGF0Sxvu-rAfWCHnsaPn0sEbSRpehPRKl7Y5vkcWOBcvzKrzNUfFSoKwcRUcR6EYr-Q9K3IDfDIsVMGlZpQq5Pmwi8QLMtgnegLn79tYi6Fqe_tc5w2qL2lx2tv6uzIegjR7zFppDfIvDwnTpe0IA16reQ_w97LZ96fOS_E1HUgtxFU=6FE0ADB2")
+   #issue_id = 10040 #zapytanie o issue numer 10040
+   query = {'jql': 'project = ITB',}
+   jira_issue_api_object = JiraIssueApi(auth = http_basic_auth, jira_base_url = 'https://doubledare.atlassian.net/rest/api/')
+   #result = jira_issue_api_object.get_jira_issue(issue_id = issue_id)
+   #print(result)
+   result = jira_issue_api_object.get_list_jira_issues(query)
+   print(result)
 
 

@@ -5,3 +5,6 @@ comit/Test_bench/test_bench_101_update.py
 comit/temps/10040.json
 comit/temps/temp_get_dump
 django_Jira/__pycache__/jira_issue_api.cpython-311.pyc
+comit/Test_bench/url test.py
+django_Jira/test_bench_101_CLASS.py
+
